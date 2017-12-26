@@ -11,7 +11,9 @@ import time
 '''
 Never lose Scrabble again
 
-
+Variables: 
+hand_columns = list of letters 
+board_columns = list of list of letters 
 '''
 
 Config.set('graphics', 'width', '700')
