@@ -13,8 +13,7 @@ Scrabble:
 
 class Words:
     words_dict = {}
-    x = open('engmix.txt','rt', encoding='latin1')
-    #x = open('engmix.txt','rt') 
+    x = open('engmix.txt','rt', encoding='latin1') #replace engmix.txt if using another txt file
     for line in x:
         line = line.strip()
         length = len(line)
@@ -29,7 +28,7 @@ class Scrabble(Words):
         self.board,self.board_columns = board, board_columns
         self.row_num = row_num
         self.row = row
-        self.orientation = orientation
+        self.orientation = orientation #0 for horizontal, 1 for vertical
         self.row_concat = ''.join(row)
         self.max, self.min = len(self.row)+1, 2
         self.hand = hand + self.row_concat
@@ -38,9 +37,8 @@ class Scrabble(Words):
 
     def unscrabble(self):
         '''
-        >>> test = Scrabble(['','u','c','',''], 'fkd')
-        >>> test.words 
-        ['fuck', 'duck']
+        returns a list of words that can be generated from board letters and
+        hand letters
         '''
         lst = []
         for i in range(self.min, self.max):
@@ -118,6 +116,10 @@ class Scrabble(Words):
         return updated
 
     def vertical_check(self, form, count, hand):
+        '''
+        checks to see if another word is created by making the word, and verifies that that 
+        word is an english word
+        '''
         #cycle through word_list
         for i in range(len(hand)):
             if (self.row_num == 0 or self.board[self.row_num-1][count + i] != '' or 
@@ -138,6 +140,10 @@ class Scrabble(Words):
         return True
 
     def not_all_board(self,form, word):
+        '''
+        checks to see that a letter from the hand was placed, and not just returning already
+        placed words
+        '''
         unchanged_word = word
         letters = ''.join(form)
         for k in letters:
@@ -150,10 +156,7 @@ class Scrabble(Words):
 
     def point_counter(self, word, count):
         ''' 
-        counts the points per letter 
-        >>> test = Scrabble(['','u','c','',''], 'fkd')
-        >>> test.point_dict
-        {11: 'duck', 13: 'fuck'}
+        counts the points per word 
         '''
         point_dict = {}
         #self.row_num = row
@@ -194,7 +197,9 @@ class Board(Scrabble):
         self.enter()
 
     def enter(self):
-        
+        '''
+        cycles through all of the rows and columns to check for words
+        '''
         row_num = 0
         # horizontal
         for b in self.board:
