@@ -13,8 +13,7 @@ Scrabble:
 
 class Words:
     words_dict = {}
-    x = open('engmix.txt','rt', encoding='latin1')
-    #x = open('engmix.txt','rt') 
+    x = open('engmix.txt','rt', encoding='latin1') #replace engmix.txt if using another txt file
     for line in x:
         line = line.strip()
         length = len(line)
