@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 
 requests = "*"
+cython = "==0.26.1"
+kivy = "*"
 
 
 [dev-packages]
