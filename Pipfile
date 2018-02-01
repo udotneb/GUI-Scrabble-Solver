@@ -10,6 +10,7 @@ name = "pypi"
 requests = "*"
 cython = "==0.26.1"
 kivy = "*"
+"d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
 
 
 [dev-packages]
