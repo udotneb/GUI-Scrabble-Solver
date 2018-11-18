@@ -23,7 +23,6 @@ Config.set('graphics', 'height', '700')
 class Boxes(GridLayout):
     def __init__(self, **kwargs):
         super(Boxes, self).__init__(**kwargs)
-        self.start = time.time()
         self.cols = 15
         self.board = []
         self.hand = []
@@ -36,7 +35,7 @@ class Boxes(GridLayout):
             for i in range(15):
                 rows = []
                 for k in range(15):
-                    rows.append(TextInput(multiline = False, write_tab = False, font_size=25))
+                    rows.append(TextInput(multiline = False, write_tab = False, font_size=25,))
                 self.board_columns.append(rows)
             #add text object widgets
             for i in self.board_columns:
@@ -100,7 +99,7 @@ class Boxes(GridLayout):
                 self.add_widget(Label(text = '',line_height = 10,))
 
             enter_btn = Button(text = 'Enter')
-            enter_btn.bind(on_press=self.enter)
+            enter_btn.bind(on_press=self.new_enter)
             self.add_widget(enter_btn)
 
             clear_btn = Button(text = 'Clear')
@@ -179,7 +178,16 @@ class Boxes(GridLayout):
                 count += 1
         self.score_label.text = str(point)
 
-    def enter(self,btn):
+    def new_enter(self,btn):
+        for i in self.board_columns:
+            for k in i:
+                string = k.text
+                if len(string) > 0:
+                    k.text = string[0]
+                    k.scroll_x = 0
+        return self.enter()
+
+    def enter(self):
 
         def quick_sort(word_lst):
             '''
@@ -207,7 +215,6 @@ class Boxes(GridLayout):
         self.out_of_label.text = str(len(self.lst_sorted))
         self.on = 0
         self.on_label.text = str(self.on)
-        print(self.start - time.time())
         
     def clear(self,btn):
         for i in self.board_columns:
