@@ -1,10 +1,11 @@
 # GUI-Scrabble-Solver
-Python-kivy app which displays a GUI of a scrabble board. Returns best all possible words sorted by highest scoring. Replace engmix.txt to expand the programs dictionary (~ 300,000 words currently).
+Python-kivy app which contains an editable GUI of a scrabble board. Returns best all possible words sorted by highest scoring. Replace engmix.txt to expand the programs dictionary (~ 300,000 words currently).
 
-Words cannot be made off of non english words  
+## To run
+```
+pip install -r requirements.txt
+python3 gui.py
+```
 
-*** depencies controlled through pipenv ***  
-after installing pipenv, run the following commands:  
-$ pipenv shell  
-$ python3 -i gui.py  
-
+## Example
+![Alt Text](https://github.com/udotneb/GUI-Scrabble-Solver/blob/master/readme_example.gif)
